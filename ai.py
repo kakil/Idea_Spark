@@ -1,9 +1,15 @@
+from dotenv import load_dotenv 
+
+load_dotenv()
+
+import os 
 import openai
 import tiktoken
 import prompts as pr
 
+
 selected_model = "gpt-3.5-turbo"
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API")
 
 
 def generate_text_with_openai(user_prompt):
