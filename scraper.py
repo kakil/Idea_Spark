@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service 
 from selenium_stealth import stealth
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
@@ -9,11 +10,15 @@ import re
 
 def perform_google_search(query):
     
+    service = Service()
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
-    driver = webdriver.Chrome( ChromeDriverManager().install(),options=options)
+    ## driver = webdriver.Chrome( ChromeDriverManager().install(),options=options)
+    driver =  webdriver.Chrome(service = service, options=options) 
+    
+    ## driver.get("https://www.google.com")
 
     stealth(driver,
             languages=["en-US", "en"],
